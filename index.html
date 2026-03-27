@@ -14,7 +14,7 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .pg{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .2s}
 .pg.on{visibility:visible;opacity:1;pointer-events:auto;z-index:10}
 #pg1{background:linear-gradient(180deg,#5773F8 0%,#fff 52%,#92B0F8 100%)}
-.pg1-logo{position:absolute;top:52px;left:50%;transform:translateX(-50%);font-size:40px;font-weight:800;color:#fff;white-space:nowrap;letter-spacing:-2px;-webkit-text-stroke:2px #000;text-shadow:3px 3px 0 #000;font-family:'Pretendard',-apple-system,sans-serif}
+.pg1-logo{position:absolute;top:52px;left:50%;transform:translateX(-50%);font-size:40px;font-weight:800;color:#fff;white-space:nowrap;letter-spacing:-2px;-webkit-text-stroke:2px #000;text-shadow:3px 3px 0 #000}
 .pg1-sub{position:absolute;top:116px;left:50%;transform:translateX(-50%);font-size:14px;color:#1c1c1e;font-weight:500;white-space:nowrap}
 .pg1-chips{position:absolute;top:154px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
 .chip-row{display:flex;gap:8px}
@@ -52,20 +52,23 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .ico{width:36px;height:36px;border:1.5px solid #000;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:1.5px 1.5px 0 #000;transition:transform .1s,box-shadow .1s}
 .tlbtn:active .ico{transform:translate(1.5px,1.5px);box-shadow:none}
 .tlbtn span{font-size:10px;font-weight:600;color:#11100c}
-.panel{position:fixed;bottom:68px;left:0;right:0;z-index:9998;background:#fff;border-top:1.5px solid #000;padding:16px;display:none;flex-direction:column;gap:10px;max-height:240px;overflow-y:auto}
+.panel{position:fixed;bottom:68px;left:0;right:0;z-index:9998;background:#fff;border-top:1.5px solid #000;padding:16px;display:none;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto}
 .panel.open{display:flex}
 .prow{display:flex;gap:8px;align-items:center}
 .pinp{flex:1;height:40px;border:1.5px solid #000;border-radius:6px;padding:0 12px;font-size:14px;outline:none;background:#fff}
 .padd{height:40px;padding:0 16px;background:#000;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer}
 .tychips{display:flex;gap:6px;flex-wrap:wrap}
-.tych{padding:6px 12px;border:1.5px solid #000;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;box-shadow:1.5px 1.5px 0 #000;font-family:'Pretendard',-apple-system,sans-serif}
+.tych{padding:6px 12px;border:1.5px solid #000;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;box-shadow:1.5px 1.5px 0 #000}
 .tych.tt{background:#ffd7f6}.tych.td{background:#79e0f2}.tych.tp{background:#f2f079}.tych.tm{background:#79bff2}
 .tych.on{box-shadow:none;transform:translate(1.5px,1.5px)}
-.catrow{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
-.catrow::-webkit-scrollbar{display:none}
+#stk-panel{display:none;flex-direction:column;gap:0;padding:0;max-height:280px}
+#stk-panel.open{display:flex}
+.stk-cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:12px 16px 8px;border-bottom:1px solid #e3e1db;flex-shrink:0;background:#fff}
+.stk-cats::-webkit-scrollbar{display:none}
 .cch{padding:4px 12px;border:1px solid #000;border-radius:200px;font-size:11px;font-weight:600;color:#11100c;background:#fff;cursor:pointer;white-space:nowrap;flex-shrink:0}
 .cch.on{background:#000;color:#fff}
-.sgrid{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px}
+.stk-grid-wrap{overflow-y:auto;padding:10px 16px 16px;flex:1}
+.sgrid{display:flex;flex-wrap:wrap;gap:6px}
 .st{font-size:28px;cursor:pointer;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1.5px solid #e3e1db;border-radius:8px}
 .st:active{background:#f5f5f0}
 .bgpresets{display:flex;gap:8px;flex-wrap:wrap;width:100%}
@@ -76,7 +79,6 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 #edit-bar span{font-size:13px;font-weight:700;color:#fff}
 #edit-bar button{border:1.5px solid #fff;border-radius:200px;padding:4px 12px;font-size:12px;font-weight:700;color:#fff;background:transparent;cursor:pointer}
 #dialog{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:24px}
-#dialog.on{display:flex}
 .dialog-box{background:#fff;border:2px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;padding:24px;width:100%;max-width:320px;display:flex;flex-direction:column;gap:16px}
 .dialog-box h3{font-size:16px;font-weight:800;color:#111;line-height:1.4}
 .dialog-box p{font-size:13px;color:#555;line-height:1.6}
@@ -86,8 +88,9 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .dbtn-cancel{background:#fff;color:#111}
 .dbtn-confirm{background:#111;color:#fff;border-color:#111}
 #pg3{background:linear-gradient(180deg,#5773F8 0%,#fff 52%,#92B0F8 100%)}
-.pg3-top{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(255,255,255,.95);border-bottom:1.5px solid #000}
-#pg3-canvas{position:absolute;top:52px;left:16px;right:16px;bottom:160px;overflow:hidden;border:2px solid #000;border-radius:4px;background:#fff;box-shadow:3px 3px 0 #000}
+.pg3-top{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(255,255,255,.95);border-bottom:1.5px solid #000;z-index:20}
+#pg3-canvas-wrap{position:absolute;top:60px;left:16px;right:16px;bottom:160px;border:2px solid #000;border-radius:4px;box-shadow:3px 3px 0 #000;overflow:hidden;background:#fff}
+#pg3-canvas-inner{position:absolute;inset:0;overflow:hidden}
 .sharearea{position:absolute;bottom:0;left:0;right:0;height:152px;background:#fff;border-top:1.5px solid #000;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
 .shr-title{font-size:13px;font-weight:700;color:#11100c}
 .linkbox{display:flex;align-items:center;gap:8px;background:#f5f5f0;border:1.5px solid #000;border-radius:6px;padding:8px 12px}
@@ -98,6 +101,15 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .shrbtn.kk{background:#FEE500;color:#000}
 .shrbtn.lk{background:#ffd7f6;color:#000}
 .shrbtn:active{transform:translate(2px,2px);box-shadow:none}
+#pg4{background:linear-gradient(180deg,#5773F8 0%,#fff 52%,#92B0F8 100%)}
+.pg4-top{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:center;padding:0 16px;background:rgba(255,255,255,.95);border-bottom:1.5px solid #000;z-index:20}
+.pg4-logo{font-size:18px;font-weight:800;letter-spacing:-0.5px;-webkit-text-stroke:1.5px #000;text-shadow:2px 2px 0 #000;color:#fff}
+#pg4-canvas-wrap{position:absolute;top:60px;left:16px;right:16px;bottom:80px;border:2px solid #000;border-radius:4px;box-shadow:3px 3px 0 #000;overflow:hidden;background:#fff}
+#pg4-canvas-inner{position:relative;width:100%;height:100%;overflow:hidden}
+.pg4-bottom{position:absolute;bottom:0;left:0;right:0;height:72px;background:#fff;border-top:1.5px solid #000;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 16px}
+.pg4-bottom p{font-size:12px;color:#888;font-weight:500}
+.pg4-bottom strong{color:#5773F8;font-weight:800}
+.pg4-make-btn{padding:8px 20px;background:#000;color:#fff;border:none;border-radius:200px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 #555;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -119,11 +131,11 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
   </div>
   <div style="position:absolute;top:286px;left:50%;transform:translateX(-50%);width:220px;height:280px;border:2px solid #000;border-radius:3px;box-shadow:2px 2px 0 #000;overflow:hidden">
     <div id="pbg" style="width:100%;height:100%;background:linear-gradient(135deg,#ff3737,#ff8c42);display:flex;align-items:center;justify-content:center"><span style="font-size:56px">🎂</span></div>
-    <div style="position:absolute;top:12px;left:10px;background:#79e0f2;border:1.5px solid #000;padding:4px 10px;font-size:10px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000;font-family:'Pretendard',sans-serif">5월 16일</div>
-    <div style="position:absolute;bottom:44px;left:10px;background:#f2f079;border:1.5px solid #000;padding:4px 10px;font-size:9px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000;font-family:'Pretendard',sans-serif">선릉역 9번 출구</div>
-    <div style="position:absolute;bottom:8px;left:10px;background:#ffd7f6;border:1.5px solid #000;padding:4px 8px;font-size:10px;font-weight:700;border-radius:2px;font-family:'Pretendard',sans-serif">우리의 파티</div>
+    <div style="position:absolute;top:12px;left:10px;background:#79e0f2;border:1.5px solid #000;padding:4px 10px;font-size:10px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000">5월 16일</div>
+    <div style="position:absolute;bottom:44px;left:10px;background:#f2f079;border:1.5px solid #000;padding:4px 10px;font-size:9px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000">선릉역 9번 출구</div>
+    <div style="position:absolute;bottom:8px;left:10px;background:#ffd7f6;border:1.5px solid #000;padding:4px 8px;font-size:10px;font-weight:700;border-radius:2px;box-shadow:2px 2px 0 #000">우리의 파티</div>
   </div>
-  <button onclick="startEdit()" style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);width:240px;height:52px;background:#fff;border:2px solid #000;border-radius:200px;font-size:15px;font-weight:700;color:#11100c;cursor:pointer;box-shadow:2px 2px 0 #000;display:flex;align-items:center;justify-content:center;font-family:'Pretendard',sans-serif">
+  <button onclick="startEdit()" style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);width:240px;height:52px;background:#fff;border:2px solid #000;border-radius:200px;font-size:15px;font-weight:700;color:#11100c;cursor:pointer;box-shadow:2px 2px 0 #000;display:flex;align-items:center;justify-content:center">
     초대장 만들기 →
   </button>
 </div>
@@ -151,9 +163,11 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
       <button class="padd" onclick="addTxt()">추가</button>
     </div>
   </div>
-  <div id="stk-panel" class="panel">
-    <div class="catrow" id="catrow"></div>
-    <div class="sgrid" id="sgrid"></div>
+  <div id="stk-panel" class="panel" style="max-height:280px">
+    <div class="stk-cats" id="catrow"></div>
+    <div class="stk-grid-wrap">
+      <div class="sgrid" id="sgrid"></div>
+    </div>
   </div>
   <div id="bg-panel" class="panel" style="gap:8px">
     <div class="bgpresets" id="bgpresets"></div>
@@ -176,7 +190,9 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
     <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.5px;-webkit-text-stroke:1.5px #000;text-shadow:2px 2px 0 #000">Invi.kr</span>
     <div style="width:72px"></div>
   </div>
-  <div id="pg3-canvas"></div>
+  <div id="pg3-canvas-wrap">
+    <div id="pg3-canvas-inner"></div>
+  </div>
   <div class="sharearea">
     <p class="shr-title">초대장 생성 완료! 🎉 친구들에게 공유하세요</p>
     <div class="linkbox">
@@ -185,8 +201,21 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
     </div>
     <div class="shrbtns">
       <button class="shrbtn kk" onclick="nativeShare()">공유하기 ↗</button>
-      <button class="shrbtn lk" onclick="copyLink()">링크 복사</button>
+      <button class="shrbtn lk" onclick="copyAndPreview()">링크 복사</button>
     </div>
+  </div>
+</div>
+
+<div id="pg4" class="pg">
+  <div class="pg4-top">
+    <span class="pg4-logo">Invi.kr</span>
+  </div>
+  <div id="pg4-canvas-wrap">
+    <div id="pg4-canvas-inner"></div>
+  </div>
+  <div class="pg4-bottom">
+    <p>made with <strong>Invi.kr</strong></p>
+    <button class="pg4-make-btn" onclick="go('pg1','pg4')">나도 만들기 →</button>
   </div>
 </div>
 
@@ -196,7 +225,7 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
     <p id="dialog-msg">현재 작업 중인 초대장이 모두 사라집니다.</p>
     <div class="dialog-btns">
       <button class="dbtn-cancel" onclick="closeDialog()">계속 편집</button>
-      <button class="dbtn-confirm" id="dialog-confirm-btn">취소하기</button>
+      <button class="dbtn-confirm" id="dialog-confirm-btn">확인하기</button>
     </div>
   </div>
 </div>
@@ -208,11 +237,12 @@ var BGLST=[{bg:'linear-gradient(135deg,#ff3737,#ff8c42)',e:'🎂'},{bg:'linear-g
 var STK={'감성':['🌸','🌷','🌹','🌻','🌈','⭐','✨','💫','🦋','🎀','🎁','🎊','🩷','🧡','💛','💚','💙','💜'],'음식':['🍰','🎂','🧁','🍩','🍪','🍓','🍑','🍊','🍋','🧃','☕','🍵','🥂','🍾','🥞','🍳'],'파티':['🎉','🎈','🎊','🎤','🎵','🎶','🥳','🎆','🎇','🪄','🎭','🎪','🎠','🎡','🎢','🎋'],'이모':['😍','🥰','😘','😊','🤩','😎','🥹','😆','🤣','😂','😜','🤪','🤗','😇','🫶','🙌'],'여행':['✈️','🌍','🗺️','🏝️','⛱️','🌅','🏔️','🗼','🎡','🛳️','🚂','🚗','🏡','🌃','🌆','🌉']};
 var CATS=['all','감성','음식','파티','이모','여행'];
 var S={ev:'party',ty:'t',cat:'all',sel:null,nid:1,editMode:false};
+var SAVED_HTML='';
 
-var _dialogCb=null;
-function showDialog(title,msg,cb){document.getElementById('dialog-title').textContent=title;document.getElementById('dialog-msg').textContent=msg;_dialogCb=cb;document.getElementById('dialog').style.display='flex';}
-function closeDialog(){document.getElementById('dialog').style.display='none';_dialogCb=null;}
-document.getElementById('dialog-confirm-btn').addEventListener('click',function(){if(_dialogCb)_dialogCb();closeDialog();});
+var _cb=null;
+function showDialog(title,msg,cb){document.getElementById('dialog-title').textContent=title;document.getElementById('dialog-msg').textContent=msg;_cb=cb;document.getElementById('dialog').style.display='flex';}
+function closeDialog(){document.getElementById('dialog').style.display='none';_cb=null;}
+document.getElementById('dialog-confirm-btn').addEventListener('click',function(){if(_cb)_cb();closeDialog();});
 function confirmBack(){showDialog('초대장 작업을 취소하시겠어요?','현재 작업 중인 초대장이 모두 사라집니다.',function(){go('pg1','pg2');});}
 function confirmReset(){showDialog('캔버스를 초기화할까요?','배치된 모든 요소가 삭제됩니다.',function(){initCanvas();});}
 
@@ -226,7 +256,7 @@ function exitEditMode(){S.editMode=false;document.getElementById('edit-bar').cla
 
 function setTy(ty,el){S.ty=ty;document.querySelectorAll('.tych').forEach(function(c){c.classList.remove('on')});el.classList.add('on');}
 function tp(id){var was=document.getElementById(id).classList.contains('open');closeP();exitEditMode();if(!was){if(id==='stk-panel')buildStk();if(id==='bg-panel')buildBg();document.getElementById(id).classList.add('open');}desel();}
-function closeP(){document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('open')})}
+function closeP(){document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('open')});}
 function buildBg(){var w=document.getElementById('bgpresets');w.innerHTML='';BGLST.forEach(function(b){var btn=document.createElement('button');btn.className='bgbtn';btn.style.background=b.bg;btn.textContent=b.e;btn.onclick=function(){var bg=document.getElementById('cbg');bg.style.background=b.bg;bg.style.backgroundImage='';bg.style.backgroundSize='';bg.innerHTML='<span>'+b.e+'</span>';closeP();};w.appendChild(btn);});}
 function setBg(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var bg=document.getElementById('cbg');bg.style.background='none';bg.style.backgroundImage='url('+ev.target.result+')';bg.style.backgroundSize='cover';bg.style.backgroundPosition='center';bg.innerHTML='';closeP();};r.readAsDataURL(f);e.target.value='';}
 function addTxt(){var v=document.getElementById('tinp').value.trim();if(!v)return;var c=document.getElementById('canvas');addEl(S.ty,v,c.clientWidth/2-40+(Math.random()-.5)*60,c.clientHeight/2+(Math.random()-.5)*60);document.getElementById('tinp').value='';closeP();}
@@ -245,20 +275,11 @@ function addEl(type,content,x,y,w,h){
   del.addEventListener('pointerdown',function(e){e.stopPropagation();});
   del.addEventListener('click',function(e){e.stopPropagation();c.removeChild(wrap);if(S.sel===id)S.sel=null;exitEditMode();});
   var hint=document.createElement('div');hint.className='el-edit-hint';hint.textContent='✏️';
-  hint.title='탭하면 편집';hint.style.pointerEvents='auto';hint.style.cursor='pointer';
-  hint.addEventListener('click',function(e){
-    e.stopPropagation();
-    sel(id);
-    enterEditMode(cel);
-    cel.focus();
-    var range=document.createRange();range.selectNodeContents(cel);range.collapse(false);
-    var ws=window.getSelection();ws.removeAllRanges();ws.addRange(range);
-  });
+  hint.style.pointerEvents='auto';hint.style.cursor='pointer';
+  hint.addEventListener('click',function(e){e.stopPropagation();sel(id);enterEditMode(cel);cel.focus();var range=document.createRange();range.selectNodeContents(cel);range.collapse(false);var ws=window.getSelection();ws.removeAllRanges();ws.addRange(range);});
   var rz=document.createElement('div');rz.className='el-rz';
   rz.addEventListener('pointerdown',function(e){e.stopPropagation();startRz(e,wrap,cel,type);});
-  inn.appendChild(del);
-  if(cel.dataset.isText)inn.appendChild(hint);
-  inn.appendChild(rz);wrap.appendChild(inn);
+  inn.appendChild(del);if(cel.dataset.isText)inn.appendChild(hint);inn.appendChild(rz);wrap.appendChild(inn);
   var lastTap=0;
   wrap.addEventListener('pointerdown',function(e){
     if(e.target===del||e.target===rz||e.target===hint)return;
@@ -285,12 +306,43 @@ function startRz(e,wrap,cel,type){var sx=e.clientX,sy=e.clientY,sw=cel.offsetWid
 
 function addImg(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var c=document.getElementById('canvas');addEl('i',ev.target.result,c.clientWidth/2-60+(Math.random()-.5)*60,c.clientHeight/2-60+(Math.random()-.5)*60,120,120);};r.readAsDataURL(f);e.target.value='';}
 
-function buildStk(){var cr=document.getElementById('catrow');cr.innerHTML='';CATS.forEach(function(c){var el=document.createElement('div');el.className='cch'+(c===S.cat?' on':'');el.textContent=c==='all'?'전체':c;el.onclick=function(){S.cat=c;buildStk();};cr.appendChild(el);});var g=document.getElementById('sgrid');g.innerHTML='';var cats=S.cat==='all'?Object.keys(STK):[S.cat];cats.forEach(function(cat){STK[cat].forEach(function(s){var el=document.createElement('div');el.className='st';el.textContent=s;el.onclick=function(){var c=document.getElementById('canvas');addEl('s',s,c.clientWidth/2-20+(Math.random()-.5)*100,c.clientHeight/2-20+(Math.random()-.5)*80);closeP();};g.appendChild(el);});});}
+function buildStk(){
+  var cr=document.getElementById('catrow');cr.innerHTML='';
+  CATS.forEach(function(c){var el=document.createElement('div');el.className='cch'+(c===S.cat?' on':'');el.textContent=c==='all'?'전체':c;el.onclick=function(){S.cat=c;buildStk();};cr.appendChild(el);});
+  var g=document.getElementById('sgrid');g.innerHTML='';
+  var cats=S.cat==='all'?Object.keys(STK):[S.cat];
+  cats.forEach(function(cat){STK[cat].forEach(function(s){var el=document.createElement('div');el.className='st';el.textContent=s;el.onclick=function(){var c=document.getElementById('canvas');addEl('s',s,c.clientWidth/2-20+(Math.random()-.5)*100,c.clientHeight/2-20+(Math.random()-.5)*80);closeP();};g.appendChild(el);});});
+}
 
-function goShare(){desel();exitEditMode();var src=document.getElementById('canvas');var dest=document.getElementById('pg3-canvas');dest.innerHTML=src.innerHTML;dest.querySelectorAll('.el').forEach(function(el){el.style.pointerEvents='none';el.classList.remove('sel');});dest.querySelectorAll('.el-del,.el-rz,.el-edit-hint').forEach(function(el){el.style.display='none';});dest.querySelectorAll('[contenteditable]').forEach(function(el){el.removeAttribute('contenteditable');});document.getElementById('shareurl').textContent=window.location.href;go('pg3','pg2');}
+function serializeCanvas(){
+  var src=document.getElementById('canvas');
+  var clone=src.cloneNode(true);
+  clone.querySelectorAll('.el-del,.el-rz,.el-edit-hint').forEach(function(el){el.remove();});
+  clone.querySelectorAll('.el').forEach(function(el){el.classList.remove('sel');el.style.pointerEvents='none';el.style.cursor='default';});
+  clone.querySelectorAll('[contenteditable]').forEach(function(el){el.removeAttribute('contenteditable');});
+  return clone.innerHTML;
+}
+
+function goShare(){
+  desel();exitEditMode();
+  SAVED_HTML=serializeCanvas();
+  var inner=document.getElementById('pg3-canvas-inner');
+  inner.innerHTML=SAVED_HTML;
+  document.getElementById('shareurl').textContent=window.location.href;
+  go('pg3','pg2');
+}
+
+function openResult(){
+  var inner=document.getElementById('pg4-canvas-inner');
+  inner.innerHTML=SAVED_HTML;
+  go('pg4','pg3');
+}
+
 function nativeShare(){var url=window.location.href;if(navigator.share){navigator.share({title:'Invi.kr 초대장',text:'초대장을 확인하세요!',url:url}).catch(function(){});}else{copyLink();}}
-function copyLink(){var url=document.getElementById('shareurl').textContent;if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('링크가 복사됐어요!')});}else{toast(url);}}
-function toast(msg){var t=document.getElementById('_t');if(!t){t=document.createElement('div');t.id='_t';t.style.cssText='position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 20px;border-radius:200px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;font-family:Pretendard,sans-serif';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2200);}
+function copyLink(){var url=document.getElementById('shareurl').textContent;if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('링크가 복사됐어요!');});}else{toast(url);}}
+function copyAndPreview(){copyLink();setTimeout(function(){openResult();},300);}
+
+function toast(msg){var t=document.getElementById('_t');if(!t){t=document.createElement('div');t.id='_t';t.style.cssText='position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 20px;border-radius:200px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2200);}
 
 document.getElementById('toolbar').style.display='none';
 initCanvas();
