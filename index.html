@@ -37,6 +37,8 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .el.sel .el-del{display:flex}
 .el-rz{position:absolute;bottom:-10px;right:-10px;width:22px;height:22px;background:#5773F8;border:2px solid #fff;border-radius:50%;cursor:nwse-resize;display:none;z-index:200;touch-action:none}
 .el.sel .el-rz{display:block}
+.el-rot{position:absolute;top:-28px;left:50%;transform:translateX(-50%);width:22px;height:22px;background:#FF8C42;border:2px solid #fff;border-radius:50%;cursor:grab;display:none;z-index:200;touch-action:none;font-size:11px;line-height:18px;text-align:center;color:#fff}
+.el.sel .el-rot{display:flex;align-items:center;justify-content:center}
 .el-edit-hint{position:absolute;top:-14px;left:-14px;width:26px;height:26px;background:#5773F8;color:#fff;border:none;border-radius:50%;font-size:13px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:200;line-height:1}
 .el.sel .el-edit-hint{display:flex}
 .et,.ed,.ep,.em{font-family:'Pretendard',-apple-system,sans-serif !important}
@@ -74,8 +76,9 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .st{cursor:pointer;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1.5px solid #e3e1db;border-radius:8px;overflow:hidden;flex-shrink:0}
 .st img{width:100%;height:100%;object-fit:contain;pointer-events:none}
 .st:active{background:#f5f5f0}
-.bgpresets{display:flex;gap:8px;flex-wrap:wrap;width:100%}
-.bgbtn{width:52px;height:52px;border:2px solid #000;border-radius:8px;font-size:20px;cursor:pointer;box-shadow:1.5px 1.5px 0 #000;display:flex;align-items:center;justify-content:center}
+.bgpresets{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.bgbtn{width:44px;height:44px;border:2px solid #000;border-radius:8px;cursor:pointer;box-shadow:1.5px 1.5px 0 #000;transition:transform .1s,box-shadow .1s}
+.bgbtn:active{transform:translate(1.5px,1.5px);box-shadow:none}
 #img-input,#bg-input{display:none}
 #edit-bar{position:fixed;bottom:68px;left:0;right:0;height:42px;background:#5773F8;display:none;align-items:center;justify-content:center;gap:8px;z-index:9997}
 #edit-bar.on{display:flex}
@@ -113,7 +116,7 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 .pg4-make-btn{padding:9px 22px;background:#000;color:#fff;border:none;border-radius:200px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 #555;white-space:nowrap}
 .result-renderer{position:absolute;top:0;left:0;transform-origin:top left}
 .result-renderer .rend-bg{position:absolute;inset:0}
-.result-renderer .rend-stage{position:absolute;inset:0}
+.result-renderer .rend-stage{position:absolute}
 </style>
 </head>
 <body>
@@ -124,17 +127,17 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
   <p class="pg1-sub">원하는 이벤트를 만들어보세요.</p>
   <div class="pg1-chips">
     <div class="chip-row">
-      <div class="chip sel" data-type="party" onclick="pickEvent(this)">🎂 파티</div>
-      <div class="chip" data-type="brunch" onclick="pickEvent(this)">🧸 브런치</div>
-      <div class="chip" data-type="pajama" onclick="pickEvent(this)">🎉 파자마</div>
+      <div class="chip sel" data-type="party" onclick="pickEvent(this)">파티</div>
+      <div class="chip" data-type="brunch" onclick="pickEvent(this)">브런치</div>
+      <div class="chip" data-type="pajama" onclick="pickEvent(this)">파자마</div>
     </div>
     <div class="chip-row">
-      <div class="chip" data-type="wedding" onclick="pickEvent(this)">💍 웨딩</div>
-      <div class="chip" data-type="fun" onclick="pickEvent(this)">🐌 병맛</div>
+      <div class="chip" data-type="wedding" onclick="pickEvent(this)">웨딩</div>
+      <div class="chip" data-type="fun" onclick="pickEvent(this)">병맛</div>
     </div>
   </div>
   <div style="position:absolute;top:286px;left:50%;transform:translateX(-50%);width:220px;height:280px;border:2px solid #000;border-radius:3px;box-shadow:2px 2px 0 #000;overflow:hidden">
-    <div id="pbg" style="width:100%;height:100%;background:linear-gradient(135deg,#ff3737,#ff8c42);display:flex;align-items:center;justify-content:center"><span style="font-size:56px">🎂</span></div>
+    <div id="pbg" style="width:100%;height:100%;background:linear-gradient(135deg,#FFDEE9,#FFB5C2)"></div>
     <div style="position:absolute;top:12px;left:10px;background:#79e0f2;border:1.5px solid #000;padding:4px 10px;font-size:10px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000">5월 16일</div>
     <div style="position:absolute;bottom:44px;left:10px;background:#f2f079;border:1.5px solid #000;padding:4px 10px;font-size:9px;font-weight:700;border-radius:2px;box-shadow:1.5px 1.5px 0 #000">선릉역 9번 출구</div>
     <div style="position:absolute;bottom:8px;left:10px;background:#ffd7f6;border:1.5px solid #000;padding:4px 8px;font-size:10px;font-weight:700;border-radius:2px;box-shadow:2px 2px 0 #000">우리의 파티</div>
@@ -226,135 +229,19 @@ input,textarea,button{font-family:'Pretendard',-apple-system,sans-serif}
 </div>
 
 <script>
-var EV={party:{e:'🎂',bg:'linear-gradient(135deg,#ff3737,#ff8c42)'},brunch:{e:'🧸',bg:'linear-gradient(135deg,#a8e6cf,#dcedc1)'},pajama:{e:'🎉',bg:'linear-gradient(135deg,#ffd3e0,#c9b1d4)'},wedding:{e:'💍',bg:'linear-gradient(135deg,#ffeaa7,#fdcb6e)'},fun:{e:'🐌',bg:'linear-gradient(135deg,#a29bfe,#6c5ce7)'}};
-var BGLST=[{bg:'linear-gradient(135deg,#ff3737,#ff8c42)',e:'🎂'},{bg:'linear-gradient(135deg,#ffd3e0,#c9b1d4)',e:'🌸'},{bg:'linear-gradient(135deg,#79e0f2,#5773F8)',e:'🌊'},{bg:'linear-gradient(135deg,#a8e6cf,#69b274)',e:'🌿'},{bg:'linear-gradient(135deg,#ffeaa7,#ff8c42)',e:'🌅'},{bg:'linear-gradient(135deg,#2c3e50,#6c5ce7)',e:'🌙'},{bg:'#fff',e:'⬜'},{bg:'#f8f7f4',e:'🍦'}];
-var STK_IMGS=["https://www.figma.com/api/mcp/asset/f8a44d8f-d502-41e7-af94-6f26a6f1f095","https://www.figma.com/api/mcp/asset/d6274e16-f170-4698-9ace-222153194220","https://www.figma.com/api/mcp/asset/037c55bf-6e5e-4b62-a386-ffa6d4733fa4","https://www.figma.com/api/mcp/asset/52b2d765-66e0-4ef3-aac5-3282266e5cc7","https://www.figma.com/api/mcp/asset/44133864-3cdc-4ef8-869d-1de3e38fe2a7","https://www.figma.com/api/mcp/asset/71d2aded-9ace-454c-a172-aae4a598b5e8","https://www.figma.com/api/mcp/asset/2f4444a6-0633-4d7d-b2bd-da39b594e874","https://www.figma.com/api/mcp/asset/62116f2c-481c-419b-8db9-597fbcff89e8","https://www.figma.com/api/mcp/asset/059ccfd0-a5ca-4353-851a-813e8adb4f24","https://www.figma.com/api/mcp/asset/7505acf8-5203-4078-ad3c-56aacf2b8b0a","https://www.figma.com/api/mcp/asset/33168a9a-4c2d-4bbc-b7d2-17a2aee20de8","https://www.figma.com/api/mcp/asset/63b69da3-0fdc-4615-a883-1d1df665d683","https://www.figma.com/api/mcp/asset/4a8c3f0e-8953-4e82-beac-cf01cbfaff26","https://www.figma.com/api/mcp/asset/9537ab6e-65d9-4383-8a26-20acd81cc497","https://www.figma.com/api/mcp/asset/ba7cd694-844f-4c8a-b6cd-28f0755212c7","https://www.figma.com/api/mcp/asset/33ba0bde-6b10-4125-8d9f-3b965ead085c","https://www.figma.com/api/mcp/asset/cb8609b6-5eb9-46b0-bd72-e9c8c77106e4","https://www.figma.com/api/mcp/asset/53922f16-d547-4ae6-87d1-e32df9027a42","https://www.figma.com/api/mcp/asset/667e423e-ecce-4633-a7fc-9f7121874500","https://www.figma.com/api/mcp/asset/d1af99c8-733f-4e63-a369-f6597923fc33","https://www.figma.com/api/mcp/asset/1703815e-aab2-4b12-b48a-65c27ddcfe1f","https://www.figma.com/api/mcp/asset/015b02be-387e-4f89-8a96-b22002dfc7ac","https://www.figma.com/api/mcp/asset/d529a836-20c0-4683-a69a-9e7d24f2ab99","https://www.figma.com/api/mcp/asset/d9d908f9-a62a-4719-92cb-9d619412f0ab"];
-var STK={'스티커':STK_IMGS};
-var CATS=['all','스티커'];
-var S={ev:'party',ty:'t',cat:'all',sel:null,nid:1,editMode:false};
-var CUR_BG={val:'linear-gradient(135deg,#ff3737,#ff8c42)',isImg:false,emoji:'🎂'};
-var SNAP={stageW:0,stageH:0,bgVal:'',bgIsImg:false,bgEmoji:'',elemsHTML:''};
-
-function checkHash(){if(location.hash==='#result'){try{var saved=localStorage.getItem('invi_snap');if(saved){SNAP=JSON.parse(saved);showResult();return;}}catch(e){}go('pg1',null);}}
-window.addEventListener('hashchange',checkHash);
-
-var _cb=null;
-function showDialog(title,msg,cb){document.getElementById('dialog-title').textContent=title;document.getElementById('dialog-msg').textContent=msg;_cb=cb;document.getElementById('dialog').style.display='flex';}
-function closeDialog(){document.getElementById('dialog').style.display='none';_cb=null;}
-document.getElementById('dialog-confirm-btn').addEventListener('click',function(){if(_cb)_cb();closeDialog();});
-function confirmBack(){showDialog('초대장 작업을 취소하시겠어요?','현재 작업 중인 초대장이 모두 사라집니다.',function(){go('pg1','pg2');});}
-function confirmReset(){showDialog('캔버스를 초기화할까요?','배치된 모든 요소가 삭제됩니다.',function(){initCanvas();});}
-
-function go(to,from){if(from)document.getElementById(from).classList.remove('on');document.getElementById(to).classList.add('on');closeP();desel();document.getElementById('toolbar').style.display=to==='pg2'?'flex':'none';}
-function pickEvent(el){document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('sel')});el.classList.add('sel');S.ev=el.dataset.type;var ev=EV[S.ev];document.getElementById('pbg').style.background=ev.bg;document.getElementById('pbg').querySelector('span').textContent=ev.e;}
-function startEdit(){initCanvas();go('pg2','pg1');}
-function initCanvas(){var stage=document.getElementById('canvas-stage');stage.innerHTML='';S.nid=1;S.sel=null;S.editMode=false;exitEditMode();var ev=EV[S.ev];CUR_BG={val:ev.bg,isImg:false,emoji:ev.e};applyBg();var name=S.ev==='party'?'우리의 파티':S.ev==='brunch'?'우리의 브런치':'우리의 이벤트';setTimeout(function(){var sw=stage.clientWidth;addEl('t',name,10,10);addEl('d','5월 16일',Math.max(10,sw-110),10);addEl('p','선릉역 9번 출구',10,70);},30);}
-function applyBg(){var bg=document.getElementById('canvas-bg');bg.style.cssText='position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;font-size:80px;';if(CUR_BG.isImg){bg.style.backgroundImage='url('+CUR_BG.val+')';bg.style.backgroundSize='cover';bg.style.backgroundPosition='center';bg.innerHTML='';}else{bg.style.background=CUR_BG.val;bg.style.backgroundImage='';bg.innerHTML='<span>'+CUR_BG.emoji+'</span>';}}
-function enterEditMode(cel){S.editMode=true;cel.contentEditable='true';document.getElementById('edit-bar').classList.add('on');closeP();}
-function exitEditMode(){S.editMode=false;document.getElementById('edit-bar').classList.remove('on');document.querySelectorAll('[contenteditable="true"]').forEach(function(el){el.contentEditable='false';el.blur();});}
-function setTy(ty,el){S.ty=ty;document.querySelectorAll('.tych').forEach(function(c){c.classList.remove('on')});el.classList.add('on');}
-function tp(id){var was=document.getElementById(id).classList.contains('open');closeP();exitEditMode();if(!was){if(id==='stk-panel')buildStk();if(id==='bg-panel')buildBg();document.getElementById(id).classList.add('open');}desel();}
-function closeP(){document.querySelectorAll('#text-panel,#stk-panel,#bg-panel').forEach(function(p){p.classList.remove('open')});}
-function buildBg(){var w=document.getElementById('bgpresets');w.innerHTML='';BGLST.forEach(function(b){var btn=document.createElement('button');btn.className='bgbtn';btn.style.background=b.bg;btn.textContent=b.e;btn.onclick=function(){CUR_BG={val:b.bg,isImg:false,emoji:b.e};applyBg();closeP();};w.appendChild(btn);});}
-function setBgImg(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){CUR_BG={val:ev.target.result,isImg:true,emoji:''};applyBg();closeP();};r.readAsDataURL(f);e.target.value='';}
-function addTxt(){var v=document.getElementById('tinp').value.trim();if(!v)return;var stage=document.getElementById('canvas-stage');addEl(S.ty,v,stage.clientWidth/2-40+(Math.random()-.5)*60,stage.clientHeight/2+(Math.random()-.5)*60);document.getElementById('tinp').value='';closeP();}
-
-function addEl(type,content,x,y,w,h){
-  var stage=document.getElementById('canvas-stage');var id='e'+(S.nid++);
-  var wrap=document.createElement('div');wrap.id=id;wrap.className='el';
-  wrap.style.left=Math.max(0,x)+'px';wrap.style.top=Math.max(0,y)+'px';wrap.dataset.type=type;
-  var inn=document.createElement('div');inn.className='inn';
-  var cel;
-  if(type==='s'){cel=document.createElement('div');cel.className='es';cel.textContent=content;}
-  else if(type==='i'){cel=document.createElement('div');cel.className='ei';cel.style.width=(w||120)+'px';cel.style.height=(h||120)+'px';var img=document.createElement('img');img.src=content;cel.appendChild(img);}
-  else{var cls={t:'et',d:'ed',p:'ep',m:'em'}[type]||'et';cel=document.createElement('div');cel.className=cls;cel.textContent=content;cel.dataset.isText='1';cel.setAttribute('data-ph','텍스트 입력');}
-  inn.appendChild(cel);
-  var del=document.createElement('button');del.className='el-del';del.textContent='×';
-  del.addEventListener('pointerdown',function(e){e.stopPropagation();});
-  del.addEventListener('click',function(e){e.stopPropagation();stage.removeChild(wrap);if(S.sel===id)S.sel=null;exitEditMode();});
-  var hint=document.createElement('div');hint.className='el-edit-hint';hint.textContent='✏️';
-  hint.addEventListener('click',function(e){e.stopPropagation();sel(id);enterEditMode(cel);cel.focus();var range=document.createRange();range.selectNodeContents(cel);range.collapse(false);var ws=window.getSelection();ws.removeAllRanges();ws.addRange(range);});
-  var rz=document.createElement('div');rz.className='el-rz';
-  rz.addEventListener('pointerdown',function(e){e.stopPropagation();startRz(e,wrap,cel,type);});
-  inn.appendChild(del);if(cel.dataset.isText)inn.appendChild(hint);inn.appendChild(rz);wrap.appendChild(inn);
-  var lastTap=0;
-  wrap.addEventListener('pointerdown',function(e){
-    if(e.target===del||e.target===rz||e.target===hint)return;
-    if(cel.contentEditable==='true')return;
-    e.preventDefault();closeP();
-    var now=Date.now();var isDouble=(now-lastTap<350)&&S.sel===id&&cel.dataset.isText;lastTap=now;
-    if(isDouble){enterEditMode(cel);cel.focus();var range=document.createRange();range.selectNodeContents(cel);range.collapse(false);var ws=window.getSelection();ws.removeAllRanges();ws.addRange(range);return;}
-    sel(id);startDrag(e,wrap);
-  });
-  if(cel.dataset.isText){
-    cel.addEventListener('blur',function(){cel.contentEditable='false';S.editMode=false;document.getElementById('edit-bar').classList.remove('on');});
-    cel.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();cel.blur();}if(e.key==='Escape'){cel.blur();}});
-  }
-  stage.appendChild(wrap);return wrap;
-}
-
-function sel(id){desel();S.sel=id;var el=document.getElementById(id);if(el)el.classList.add('sel');}
-function desel(){if(S.sel){var o=document.getElementById(S.sel);if(o)o.classList.remove('sel');S.sel=null;}}
-document.getElementById('canvas').addEventListener('pointerdown',function(e){var t=e.target;if(t===document.getElementById('canvas')||t===document.getElementById('canvas-bg')||t===document.getElementById('canvas-stage')){desel();closeP();exitEditMode();}});
-
-function startDrag(e,wrap){var stage=document.getElementById('canvas-stage');var sx=e.clientX,sy=e.clientY,sl=parseInt(wrap.style.left)||0,st=parseInt(wrap.style.top)||0;try{wrap.setPointerCapture(e.pointerId);}catch(err){}wrap.style.cursor='grabbing';wrap.style.zIndex='99';function mv(e){var sw=stage.clientWidth,sh=stage.clientHeight;wrap.style.left=Math.max(-wrap.offsetWidth*.3,Math.min(sw-wrap.offsetWidth*.7,sl+(e.clientX-sx)))+'px';wrap.style.top=Math.max(-wrap.offsetHeight*.3,Math.min(sh-wrap.offsetHeight*.7,st+(e.clientY-sy)))+'px';}function up(){wrap.style.cursor='grab';wrap.style.zIndex='';wrap.removeEventListener('pointermove',mv);wrap.removeEventListener('pointerup',up);wrap.removeEventListener('pointercancel',up);}wrap.addEventListener('pointermove',mv);wrap.addEventListener('pointerup',up);wrap.addEventListener('pointercancel',up);}
-function startRz(e,wrap,cel,type){var sx=e.clientX,sy=e.clientY,sw=cel.offsetWidth||80,sh=cel.offsetHeight||80,ss=parseFloat(cel.style.fontSize)||parseFloat(getComputedStyle(cel).fontSize)||13;wrap.setPointerCapture(e.pointerId);function mv(e){var dx=e.clientX-sx,dy=e.clientY-sy,d=(dx+dy)/2;if(type==='s'){cel.style.fontSize=Math.max(16,Math.min(100,ss+d*.4))+'px';}else if(type==='i'||type==='si'){cel.style.width=Math.max(40,sw+dx)+'px';cel.style.height=Math.max(40,sh+dy)+'px';}else{cel.style.fontSize=Math.max(8,Math.min(60,ss+d*.2))+'px';}}function up(){wrap.removeEventListener('pointermove',mv);wrap.removeEventListener('pointerup',up);}wrap.addEventListener('pointermove',mv);wrap.addEventListener('pointerup',up);}
-function addImg(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var stage=document.getElementById('canvas-stage');addEl('i',ev.target.result,stage.clientWidth/2-60+(Math.random()-.5)*60,stage.clientHeight/2-60+(Math.random()-.5)*60,120,120);};r.readAsDataURL(f);e.target.value='';}
-
-function addImgSticker(url,x,y){
-  var stage=document.getElementById('canvas-stage');var id='e'+(S.nid++);
-  var wrap=document.createElement('div');wrap.id=id;wrap.className='el';
-  wrap.style.left=Math.max(0,x)+'px';wrap.style.top=Math.max(0,y)+'px';wrap.dataset.type='si';
-  var inn=document.createElement('div');inn.className='inn';
-  var cel=document.createElement('div');cel.className='ei';
-  cel.style.width='72px';cel.style.height='72px';
-  cel.style.border='none';cel.style.boxShadow='none';cel.style.borderRadius='0';cel.style.background='transparent';
-  var img=document.createElement('img');img.src=url;img.style.objectFit='contain';img.style.background='transparent';
-  cel.appendChild(img);inn.appendChild(cel);
-  var del=document.createElement('button');del.className='el-del';del.textContent='×';
-  del.addEventListener('pointerdown',function(e){e.stopPropagation();});
-  del.addEventListener('click',function(e){e.stopPropagation();stage.removeChild(wrap);if(S.sel===id)S.sel=null;});
-  var rz=document.createElement('div');rz.className='el-rz';
-  rz.addEventListener('pointerdown',function(e){e.stopPropagation();startRz(e,wrap,cel,'si');});
-  inn.appendChild(del);inn.appendChild(rz);wrap.appendChild(inn);
-  wrap.addEventListener('pointerdown',function(e){
-    if(e.target===del||e.target===rz)return;
-    e.preventDefault();closeP();sel(id);startDrag(e,wrap);
-  });
-  stage.appendChild(wrap);return wrap;
-}
-
-function buildStk(){
-  var cr=document.getElementById('catrow');cr.innerHTML='';
-  CATS.forEach(function(c){var el=document.createElement('div');el.className='cch'+(c===S.cat?' on':'');el.textContent=c==='all'?'전체':c;el.onclick=function(){S.cat=c;buildStk();};cr.appendChild(el);});
-  var g=document.getElementById('sgrid');g.innerHTML='';
-  var cats=S.cat==='all'?Object.keys(STK):[S.cat];
-  cats.forEach(function(cat){STK[cat].forEach(function(url){
-    var el=document.createElement('div');el.className='st';
-    var img=document.createElement('img');img.src=url;img.alt='sticker';
-    el.appendChild(img);
-    el.onclick=function(){
-      var stage=document.getElementById('canvas-stage');
-      addImgSticker(url,stage.clientWidth/2-36+(Math.random()-.5)*100,stage.clientHeight/2-36+(Math.random()-.5)*80);
-      closeP();
-    };
-    g.appendChild(el);
-  });});
-}
-
-function saveSnap(){var stage=document.getElementById('canvas-stage');var clone=stage.cloneNode(true);clone.querySelectorAll('.el-del,.el-rz,.el-edit-hint').forEach(function(el){el.remove();});clone.querySelectorAll('.el').forEach(function(el){el.classList.remove('sel');el.style.pointerEvents='none';el.style.cursor='default';});clone.querySelectorAll('[contenteditable]').forEach(function(el){el.removeAttribute('contenteditable');});SNAP={stageW:stage.clientWidth,stageH:stage.clientHeight,bgVal:CUR_BG.val,bgIsImg:CUR_BG.isImg,bgEmoji:CUR_BG.emoji,elemsHTML:clone.innerHTML};try{localStorage.setItem('invi_snap',JSON.stringify(SNAP));}catch(e){}}
-
-function renderSnap(boxId){var box=document.getElementById(boxId);box.innerHTML='';var bw=box.clientWidth,bh=box.clientHeight;var scale=Math.min(bw/SNAP.stageW,bh/SNAP.stageH);var rend=document.createElement('div');rend.className='result-renderer';rend.style.width=SNAP.stageW+'px';rend.style.height=SNAP.stageH+'px';rend.style.transform='scale('+scale+')';rend.style.transformOrigin='top left';rend.style.left=((bw-SNAP.stageW*scale)/2)+'px';rend.style.top=((bh-SNAP.stageH*scale)/2)+'px';var bg=document.createElement('div');bg.className='rend-bg';if(SNAP.bgIsImg){bg.style.backgroundImage='url('+SNAP.bgVal+')';bg.style.backgroundSize='cover';bg.style.backgroundPosition='center';}else{bg.style.background=SNAP.bgVal;bg.innerHTML='<span style="font-size:80px;display:flex;align-items:center;justify-content:center;height:100%">'+SNAP.bgEmoji+'</span>';}rend.appendChild(bg);var stageDiv=document.createElement('div');stageDiv.className='rend-stage';stageDiv.innerHTML=SNAP.elemsHTML;rend.appendChild(stageDiv);box.appendChild(rend);}
-
-function showResult(){renderSnap('pg4-box');document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.getElementById('pg4').classList.add('on');document.getElementById('toolbar').style.display='none';}
-function goShare(){desel();exitEditMode();saveSnap();renderSnap('pg3-box');var url=location.href.split('#')[0]+'#result';document.getElementById('shareurl').textContent=url;go('pg3','pg2');}
-function nativeShare(){var url=document.getElementById('shareurl').textContent;if(navigator.share){navigator.share({title:'Invi.kr 초대장',text:'초대장을 확인하세요!',url:url}).catch(function(){});}else{copyLink();}}
-function copyLink(){var url=document.getElementById('shareurl').textContent;if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('링크가 복사됐어요!');});}else{toast(url);}}
-function toast(msg){var t=document.getElementById('_t');if(!t){t=document.createElement('div');t.id='_t';t.style.cssText='position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 20px;border-radius:200px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity='0';},2200);}
-
-document.getElementById('toolbar').style.display='none';
-initCanvas();
-checkHash();
-</script>
-</body>
-</html>
+var EV={party:{bg:'linear-gradient(135deg,#FFDEE9,#FFB5C2)'},brunch:{bg:'linear-gradient(135deg,#C1FFD7,#B5DEFF)'},pajama:{bg:'linear-gradient(135deg,#E8D5FF,#FFD6F5)'},wedding:{bg:'linear-gradient(135deg,#FFF1C1,#FFE0A3)'},fun:{bg:'linear-gradient(135deg,#D4F5E9,#C8F5FF)'}};
+var BGLST=[
+  {bg:'linear-gradient(135deg,#FFDEE9,#B5FFFC)',label:'핑크블루'},
+  {bg:'linear-gradient(135deg,#FFF1C1,#FFD6E0)',label:'옐로핑크'},
+  {bg:'linear-gradient(135deg,#C1FFD7,#B5DEFF)',label:'민트블루'},
+  {bg:'linear-gradient(135deg,#E8D5FF,#FFD6F5)',label:'라벤더'},
+  {bg:'linear-gradient(135deg,#FFE5CC,#FFDEE9)',label:'피치'},
+  {bg:'linear-gradient(135deg,#D4F5E9,#C8F5FF)',label:'그린'},
+  {bg:'linear-gradient(135deg,#FFF9C1,#E8FFD5)',label:'레몬'},
+  {bg:'linear-gradient(135deg,#F5D4FF,#D4E8FF)',label:'퍼플블루'},
+  {bg:'#FFF8F0',label:'크림'},
+  {bg:'#F0F7FF',label:'아이스'},
+  {bg:'#F5FFF0',label:'민트'},
+  {bg:'#FFF0F5',label:'로즈'}
+];
+var STK_IMGS=["https://www.figma.com/api/mcp/asset/f8a44d8f-d502-41e7-af94-6f26a6f1f095","https://www.figma.com/api/mcp/asset/d6274e16-f170-4698-9ace-222153194220","https://www.figma.com/api/mcp/asset/037c55bf-6e5e-4b62-a386-ffa6d4733fa4","https://www.figma.com/api/mcp/asset/52b2d765-66e0-4ef3-aac5-3282266e5cc7","https://www.figma.com/api/mcp/asset/44133864-3cdc-4ef8-869d-1de3e38fe2a7","https://www.figma.com/api/mcp/asset/71d2aded-9ace-454c-a172-aae4a598b5e8","https://www.figma.com/api/mcp/asset/2f4444a6-0633-4d7d-b2bd-da39b594e874","https://www.figma.com/api/mcp/asset/62116f2c-481c-419b-8db9-597fbcff89e8","https://www.figma.com/api/mcp/asset/059ccfd0-a5ca-4353-851a-813e8adb4f24","https://www.figma.com/api/mcp/asset/7505acf8-5203-4078-ad3c-56aacf2b8b0a","https://www.figma.com/api/mcp/asset/33168a9a-4c2d-4bbc-b7d2-17a2aee20de8","https://www.figma.com/api/mcp/asset/63b69da3-0fdc-4615-a883-1d1df665d683","https://www.figma.com/api/mcp/asset/4a8c3f0e-8953-4e82-beac-cf01cbfaff26","https://www.figma.com/api/mcp/asset/9537ab6e-65d9-4383-8a26-20acd81cc497","https://www.figma.com/api/mcp/asset/ba7cd694-844f-4c8a-b6cd-28f0755212c7","https://www.figma.com/api/mcp/asset/33ba0bde-6b10-4125-8d9f-3b965ead085c","https://www.figma.com/api/mcp/asset/cb8609b6-5eb9-46b0-bd72-e9c8c77106e4","https://www.figma.com
